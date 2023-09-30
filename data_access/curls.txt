@@ -1,0 +1,15 @@
+= Категории ===
+--- List
+curl -X GET http://127.0.0.1:8000/shop/category/
+--- New
+curl -X POST http://127.0.0.1:8000/shop/category/ \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "New Category 1", "parent": null}'
+--- One category
+curl -X GET http://127.0.0.1:8000/shop/category/28/
+--- Edit
+curl -X PUT http://127.0.0.1:8000/shop/category/28/ \
+  -H 'Content-Type: application/json' \
+  -d '{"name": "New Category 2", "parent": null}'
+--- Delete
+curl -X DELETE http://localhost:8000/shop/category/28/
