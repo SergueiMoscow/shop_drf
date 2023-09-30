@@ -13,3 +13,55 @@ curl -X PUT http://127.0.0.1:8000/shop/category/28/ \
   -d '{"name": "New Category 2", "parent": null}'
 --- Delete
 curl -X DELETE http://localhost:8000/shop/category/28/
+
+=== Продукты ===
+--- List
+curl -X GET http://127.0.0.1:8000/shop/product/
+--- New
+curl -X POST http://127.0.0.1:8000/shop/product/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "name": "Test-product",
+        "category": 9,
+        "price": 99.99,
+        "stock": 50,
+        "description": "Очень вкусная рыба"
+        }'
+--- Read
+curl -X GET http://127.0.0.1:8000/shop/product/8/
+--- Update
+curl -X PUT http://127.0.0.1:8000/shop/product/8/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "name": "Test-product 2",
+        "category": 9,
+        "price": 99.98,
+        "stock": 45,
+        "description": "Ну очень вкусная рыба"
+        }'
+--- Delete
+curl -X DELETE http://127.0.0.1:8000/shop/product/8/
+
+Users:
+--- register:
+curl -X POST http://127.0.0.1:8000/api-token-auth \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+        "username": "test_user",
+        "password": "test_password"
+    }'
+--- login
+
+Авторизированный запрос:
+--- добавление
+curl -X POST http://127.0.0.1:8000/shop/category/ \
+    -H 'Authorization: Token 88266eef1feafb2b5122d461fcef5efffed153a4' \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "New Category 12"}'
+
+--- редактирование
+curl -X POST http://127.0.0.1:8000/shop/category/33/ \
+    -H 'Authorization: Token 88266eef1feafb2b5122d461fcef5efffed153a4' \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "Modified Category 12"}'
