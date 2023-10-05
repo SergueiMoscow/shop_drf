@@ -1,15 +1,7 @@
-from rest_framework import viewsets, permissions
-from rest_framework.permissions import BasePermission
+from rest_framework import viewsets
 
 from shop_app.models import Product, Category
-from shop_app.services import CategorySerializer, ProductSerializer
-
-
-class AdminOrReadOnlyPermission(BasePermission):
-    def has_permission(self, request, view):
-        if request.method not in ['GET']:
-            return request.user.is_superuser
-        return True
+from shop_app.services import CategorySerializer, ProductSerializer, AdminOrReadOnlyPermission
 
 
 class ProductViewSet(viewsets.ModelViewSet):
